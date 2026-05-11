@@ -23,7 +23,9 @@ export function bootstrap(view: string, style: string, logic: any) {
   document.head.appendChild(styleTag);
   const appDiv = document.getElementById("app");
   if (appDiv) {
-    appDiv.innerHTML = view;
-    mount(appDiv, logic);
+    const section = document.createElement("div");
+    section.innerHTML = view;
+    appDiv.appendChild(section);
+    mount(section, logic);
   }
 }
