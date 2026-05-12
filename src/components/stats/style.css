@@ -1,0 +1,2 @@
+.stats-card { background: #1e293b; color: white; padding: 1.5rem; border-radius: 12px; margin-top: 1rem; font-family: sans-serif; }
+.stat { display: flex; justify-content: space-between; margin-bottom: 0.5rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem; }

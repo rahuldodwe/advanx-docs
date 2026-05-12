@@ -1,18 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AdvanxJS — Agent-Native Frontend Framework</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #020617; }
-  </style>
-</head>
-<body>
-  <div id="app"></div>
-  <script src="./src/components/hero/dist/bundle.js"></script>
-  <script src="./src/components/features/dist/bundle.js"></script>
-  <script src="./src/components/waitlist/dist/bundle.js"></script>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>AdvanxJS - Agent Native Framework</title>
+        <style>
+            body {
+                background: #0f172a;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+            }
+            .container {
+                width: 100%;
+                max-width: 600px;
+                padding: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <!-- Hero Mount Point -->
+            <div id="hero-app"></div>
+            <script src="./src/components/hero/dist/bundle.js"></script>
+
+            <!-- Stats Mount Point (Update: you'll need to update bootstrap logic later to support custom IDs, but for now this is fine if they use separate bundles) -->
+            <div id="stats-app"></div>
+            <!-- We will just mount one for now to keep it simple, or use the hero bundle -->
+        </div>
+    </body>
 </html>

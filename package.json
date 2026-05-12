@@ -2,15 +2,14 @@
   "name": "advanx-docs",
   "module": "index.ts",
   "type": "module",
-  "private": true,
+  "scripts": {
+    "build": "bun src/lib/advanx/compiler-cli.ts build src/components/hero && bun src/lib/advanx/compiler-cli.ts build src/components/stats",
+    "dev": "bun x serve ."
+  },
   "devDependencies": {
-    "@types/bun": "latest",
-    "typescript": "^6.0.3"
+    "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@preact/signals-core": "^1.13.0"
-  },
-  "scripts": {
-    "build": "bun ./src/lib/advanx/compiler-cli.ts build src/components/hero && bun ./src/lib/advanx/compiler-cli.ts build src/components/stats"
+    "@preact/signals-core": "^1.8.0"
   }
 }
