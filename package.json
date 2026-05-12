@@ -11,7 +11,6 @@
     "@preact/signals-core": "^1.13.0"
   },
   "scripts": {
-    "build": "bun ./src/lib/advanx/compiler-cli.ts build src/components/hero && bun ./src/lib/advanx/compiler-cli.ts build src/components/stats",
-    "install": "bun install"
+    "build": "bun ./src/lib/advanx/compiler-cli.ts build src/components/hero && bun ./src/lib/advanx/compiler-cli.ts build src/components/stats"
   }
 }
