@@ -1,0 +1,33 @@
+.theme-toggle {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--ax-bg-alt);
+  border: 1px solid var(--ax-border);
+  color: var(--ax-ink);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  padding: 0.45rem 0.85rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.15s;
+}
+
+.theme-toggle:hover {
+  border-color: var(--ax-brand);
+  transform: translateY(-1px);
+}
+
+.theme-toggle-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 9999px;
+  background: var(--ax-brand);
+  box-shadow: 0 0 0 3px var(--ax-brand-soft);
+}

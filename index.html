@@ -3,20 +3,49 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>AdvanxJS - Agent Native Framework</title>
+        <title>AdvanxJS — The Agent-Native Framework</title>
+        <link rel="icon" type="image/png" href="./assets/favicon.png" />
+        <link rel="apple-touch-icon" href="./assets/favicon.png" />
+        <meta name="theme-color" content="#F4F1EB" />
+        <script>
+            (function () {
+                var saved = null;
+                try { saved = localStorage.getItem("advanx-theme"); } catch (_) {}
+                document.documentElement.dataset.theme = saved === "dark" ? "dark" : "light";
+            })();
+        </script>
         <style>
+            :root {
+                --ax-bg: #F4F1EB;
+                --ax-bg-alt: #ECE7DD;
+                --ax-border: rgba(14, 14, 16, 0.08);
+                --ax-ink: #0E0E10;
+                --ax-muted: #8a847a;
+                --ax-brand: #FF4D2E;
+                --ax-brand-hover: #E03B1C;
+                --ax-brand-soft: rgba(255, 77, 46, 0.12);
+                --ax-ring: rgba(255, 77, 46, 0.25);
+            }
+            :root[data-theme="dark"] {
+                --ax-bg: #0E0E10;
+                --ax-bg-alt: #1a1a1d;
+                --ax-border: rgba(244, 241, 235, 0.08);
+                --ax-ink: #F4F1EB;
+                --ax-muted: #8a847a;
+            }
+            html, body { margin: 0; }
             body {
-                background: #0f172a;
-                margin: 0;
+                background: var(--ax-bg);
+                color: var(--ax-ink);
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
             }
-            .container {
-                width: 100%;
-            }
+            .container { width: 100%; }
         </style>
     </head>
     <body>
         <div class="container">
             <div id="app"></div>
+            <script src="./src/components/theme-toggle/dist/bundle.js"></script>
             <script src="./src/components/hero/dist/bundle.js"></script>
             <script src="./src/components/stats/dist/bundle.js"></script>
             <script src="./src/components/features/dist/bundle.js"></script>
