@@ -1,0 +1,18 @@
+<section class="constitution">
+  <p class="constitution-meta">03 / THE LAW</p>
+  <h2 class="constitution-heading">The AdvanxJS Constitution</h2>
+  <p class="constitution-sub">Eight non-negotiable laws. Any code that violates these is NOT AdvanxJS.</p>
+
+  <div class="articles-grid">
+    <article class="article-card" ax-for="article in articles">
+      <span class="article-num">{{ article.id }}</span>
+      <h3 class="article-title">{{ article.title }}</h3>
+      <p class="article-body">{{ article.body }}</p>
+    </article>
+  </div>
+
+  <div class="constitution-cta">
+    <button class="copy-btn" ax-on:click="copyRules">Copy Rules for AI</button>
+    <p class="copy-confirm" ax-if="isCopied">Copied to clipboard!</p>
+  </div>
+</section>
