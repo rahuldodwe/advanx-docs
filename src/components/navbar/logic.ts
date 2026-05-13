@@ -14,5 +14,5 @@ export function goDocs() {
 
 export function goConstitution() {
   activeTab.value = "constitution";
-  window.location.href = "./CONSTITUTION.md";
+  window.location.href = "/constitution/";
 }
