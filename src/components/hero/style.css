@@ -74,6 +74,17 @@
 
 .hero-cta:active { transform: translateY(0); }
 
+.hero-github {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--ax-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.hero-github:hover { color: var(--ax-brand); }
+
 .hero-foot {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.7rem;
