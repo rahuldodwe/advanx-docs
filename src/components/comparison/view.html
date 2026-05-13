@@ -1,0 +1,134 @@
+<section class="comparison">
+  <p class="comparison-meta">04 / WHY ADVANXJS</p>
+  <h2 class="comparison-heading">Which framework can your AI actually read?</h2>
+  <p class="comparison-sub">Drag the slider. One side is a token nightmare. The other is 100% agent-readable.</p>
+
+  <div class="comparison-panels">
+    <div class="panel panel-react" id="panel-react">
+      <div class="panel-header">
+        <span class="panel-name">React / Next.js</span>
+        <span class="panel-badge panel-badge--bad">2,500 Tokens &middot; High Hallucination Risk</span>
+      </div>
+      <pre class="code-pre"><code>// UserDashboard.tsx
+import React, {
+  useState, useEffect,
+  useCallback, useMemo
+} from 'react';
+import { useRouter } from 'next/navigation';
+import { fetchUser, updateUser } from '@/lib/api';
+import type { User, ApiError } from '@/types';
+
+interface Props {
+  userId: string;
+  onUpdate?: (user: User) =&gt; void;
+}
+
+export default function UserDashboard({
+  userId, onUpdate
+}: Props) {
+  const router = useRouter();
+  const [user, setUser] =
+    useState&lt;User | null&gt;(null);
+  const [loading, setLoading] =
+    useState(true);
+  const [error, setError] =
+    useState&lt;ApiError | null&gt;(null);
+
+  useEffect(() =&gt; {
+    let cancelled = false;
+    setLoading(true);
+    fetchUser(userId)
+      .then(data =&gt; {
+        if (!cancelled) {
+          setUser(data);
+          setLoading(false);
+        }
+      })
+      .catch(err =&gt; {
+        if (!cancelled) {
+          setError(err);
+          setLoading(false);
+        }
+      });
+    return () =&gt; { cancelled = true; };
+  }, [userId]);
+
+  const handleSave = useCallback(
+    async () =&gt; {
+      if (!user) return;
+      try {
+        const updated = await updateUser(user);
+        setUser(updated);
+        onUpdate?.(updated);
+      } catch (err) {
+        setError(err as ApiError);
+      }
+    },
+    [user, onUpdate]
+  );
+
+  const displayName = useMemo(() =&gt;
+    user
+      ? `${"{"}user.firstName{"}"} ${"{"}user.lastName{"}"}`
+      : 'Loading...',
+    [user]
+  );
+
+  if (loading)
+    return &lt;div&gt;Loading...&lt;/div&gt;;
+  if (error)
+    return &lt;div&gt;Error: {"{"}error.message{"}"}&lt;/div&gt;;
+
+  return (
+    &lt;div className="dashboard"&gt;
+      &lt;h1&gt;{"{"}displayName{"}"}&lt;/h1&gt;
+      &lt;button onClick={"{"}handleSave{"}"}&gt;
+        Save
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+    </div>
+
+    <div class="panel panel-advanx" id="panel-advanx">
+      <div class="panel-header">
+        <span class="panel-name">AdvanxJS</span>
+        <span class="panel-badge panel-badge--good">200 Tokens &middot; 100% Agent Accuracy</span>
+      </div>
+      <p class="file-label">logic.ts</p>
+      <pre class="code-pre"><code>import { signal, effect } from "advanxjs";
+
+export const user = signal(null);
+export const loading = signal(true);
+
+effect(async () =&gt; {
+  user.value = await fetchUser();
+  loading.value = false;
+});
+
+export async function save() {
+  user.value = await updateUser(user.value);
+}</code></pre>
+      <p class="file-label">view.html</p>
+      <pre class="code-pre"><code>&lt;div ax-if="loading"&gt;
+  Loading...
+&lt;/div&gt;
+&lt;div class="dashboard"&gt;
+  &lt;h1&gt;&#123;&#123; user.name &#125;&#125;&lt;/h1&gt;
+  &lt;button ax-on:click="save"&gt;
+    Save
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+      <p class="file-label">style.css</p>
+      <pre class="code-pre"><code>.dashboard { padding: 2rem; }
+h1 { color: var(--ax-brand); }</code></pre>
+    </div>
+  </div>
+
+  <div class="slider-row">
+    <span class="slider-hint">&larr; AdvanxJS</span>
+    <input type="range" class="comparison-slider"
+      min="20" max="80" value="50" ax-model="splitPercent" />
+    <span class="slider-hint">React &rarr;</span>
+  </div>
+</section>

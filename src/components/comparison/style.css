@@ -1,0 +1,113 @@
+* { box-sizing: border-box; }
+
+.comparison {
+  background: var(--ax-bg);
+  padding: 5rem 2rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.comparison-meta {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--ax-muted);
+  margin: 0 0 1rem; text-align: center;
+}
+.comparison-heading {
+  font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 900;
+  letter-spacing: -0.03em; color: var(--ax-ink);
+  margin: 0 0 0.75rem; text-align: center;
+}
+.comparison-sub {
+  font-size: 1rem; color: var(--ax-muted); max-width: 42rem;
+  margin: 0 auto 2.5rem; line-height: 1.65; text-align: center;
+}
+
+.comparison-panels {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  max-width: 82rem;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.panel {
+  flex: 1;
+  min-width: 0;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--ax-border);
+  transition: flex 0.12s ease;
+}
+.panel-react { border-top: 3px solid #ef4444; }
+.panel-advanx { border-top: 3px solid var(--ax-brand); }
+
+.panel-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  background: var(--ax-bg-alt);
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--ax-border);
+}
+.panel-name {
+  font-size: 0.9rem; font-weight: 800;
+  letter-spacing: -0.01em; color: var(--ax-ink);
+}
+.panel-badge {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.2rem 0.65rem; border-radius: 9999px;
+}
+.panel-badge--bad {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+.panel-badge--good {
+  background: var(--ax-brand-soft);
+  color: var(--ax-brand);
+  border: 1px solid var(--ax-ring);
+}
+
+.code-pre {
+  background: #0d0f14;
+  color: #e8e4dc;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem; line-height: 1.65;
+  margin: 0; padding: 1.25rem 1.5rem;
+  overflow-x: auto; white-space: pre;
+}
+
+.file-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+  color: var(--ax-brand); background: var(--ax-bg-alt);
+  border-top: 1px solid var(--ax-border);
+  margin: 0; padding: 0.45rem 1.25rem;
+}
+
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 82rem;
+  margin: 1.25rem auto 0;
+}
+.comparison-slider {
+  flex: 1;
+  accent-color: var(--ax-brand);
+  cursor: pointer;
+  height: 4px;
+}
+.slider-hint {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.68rem; color: var(--ax-muted); white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .comparison-panels { flex-direction: column; }
+  .panel { flex: none !important; width: 100% !important; }
+  .slider-row { display: none; }
+}
