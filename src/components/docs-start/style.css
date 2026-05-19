@@ -88,4 +88,23 @@
   padding: 0.1em 0.4em; color: var(--ax-brand);
 }
 
+.docs-step { margin-bottom: 1.5rem; }
+.docs-step:last-child { margin-bottom: 0; }
+.step-header {
+  display: flex; align-items: center; gap: 0.6rem;
+  margin: 0 0 0.6rem;
+}
+.step-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.5rem; height: 1.5rem; border-radius: 9999px;
+  background: var(--ax-brand); color: #ffffff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0;
+  box-shadow: 0 0 0 4px var(--ax-brand-soft);
+}
+.step-title {
+  font-size: 1rem; font-weight: 700; letter-spacing: -0.01em;
+  color: var(--ax-ink);
+}
+
 @media (max-width: 768px) { .trinity-grid { grid-template-columns: 1fr; } }

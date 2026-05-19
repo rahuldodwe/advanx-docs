@@ -12,5 +12,13 @@ export const features = signal([
   {
     title: "Contract Validation",
     description: "Every binding is validated at build time against logic exports. Broken contracts fail the build."
+  },
+  {
+    title: "SPA Routing",
+    description: "File-based routing with zero config. Drop a file in src/pages and AdvanxJS wires the URL — no Router component, no boilerplate."
+  },
+  {
+    title: "Built-in Dev Server",
+    description: "advanx serve runs your bundled app with hot signal updates. No Vite, no Webpack — just bun, your bundle, and instant feedback."
   }
 ]);
