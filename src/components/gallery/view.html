@@ -1,0 +1,61 @@
+<section class="gallery">
+  <p class="gallery-meta">/ REGISTRY</p>
+  <h2 class="gallery-heading">AdvanxUI Components</h2>
+  <p class="gallery-sub">Drop-in primitives. One command. Three files each.</p>
+
+  <div class="gallery-grid">
+    <article class="gallery-card">
+      <div class="card-preview">
+        <iframe
+          class="preview-frame"
+          src="/components/preview/navbar/"
+          title="Live preview of Navbar"
+          loading="lazy"
+          tabindex="-1"
+          aria-hidden="true"></iframe>
+      </div>
+      <div class="card-meta">
+        <h3 class="card-title">Navbar</h3>
+        <p class="card-desc">Sticky header with logo, navigation, and CTA.</p>
+        <code class="card-cmd">advanx add navbar</code>
+        <button class="card-copy" ax-on:click="copyNavbar">Copy</button>
+      </div>
+    </article>
+
+    <article class="gallery-card">
+      <div class="card-preview card-preview--stats">
+        <iframe
+          class="preview-frame"
+          src="/components/preview/stats/"
+          title="Live preview of Stats Card"
+          loading="lazy"
+          tabindex="-1"
+          aria-hidden="true"></iframe>
+      </div>
+      <div class="card-meta">
+        <h3 class="card-title">Stats Card</h3>
+        <p class="card-desc">Framework status card with key/value metrics.</p>
+        <code class="card-cmd">advanx add stats</code>
+        <button class="card-copy" ax-on:click="copyStats">Copy</button>
+      </div>
+    </article>
+
+    <article class="gallery-card gallery-card--pro">
+      <div class="card-preview card-preview--locked">
+        <div class="lock-glyph" aria-hidden="true">&#x1F512;</div>
+        <div class="pro-wordmark">PRO</div>
+      </div>
+      <div class="card-meta">
+        <h3 class="card-title">
+          Dashboard Pro
+          <span class="pro-badge">COMING SOON</span>
+        </h3>
+        <p class="card-desc">Full admin dashboard with charts, tables, and auth flows.</p>
+        <code class="card-cmd card-cmd--disabled">advanx add dashboard-pro</code>
+        <button class="card-copy card-copy--disabled" ax-on:click="copyDashboard" disabled>Locked</button>
+      </div>
+    </article>
+  </div>
+
+  <p class="gallery-toast" ax-if="isCopied">Copied to clipboard</p>
+</section>

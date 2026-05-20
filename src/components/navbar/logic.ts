@@ -1,6 +1,6 @@
 import { signal } from "../../lib/advanx/runtime.ts";
 
-export const activeTab = signal<"home" | "docs" | "constitution">("home");
+export const activeTab = signal<"home" | "docs" | "constitution" | "components">("home");
 
 export function goHome() {
   activeTab.value = "home";
@@ -15,4 +15,9 @@ export function goDocs() {
 export function goConstitution() {
   activeTab.value = "constitution";
   window.location.href = "/constitution/";
+}
+
+export function goComponents() {
+  activeTab.value = "components";
+  window.location.href = "/components/";
 }

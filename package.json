@@ -3,7 +3,7 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "build": "bun src/lib/advanx/compiler-cli.ts build src/components/theme-toggle && bun src/lib/advanx/compiler-cli.ts build src/components/navbar && bun src/lib/advanx/compiler-cli.ts build src/components/hero && bun src/lib/advanx/compiler-cli.ts build src/components/stats && bun src/lib/advanx/compiler-cli.ts build src/components/features && bun src/lib/advanx/compiler-cli.ts build src/components/comparison && bun src/lib/advanx/compiler-cli.ts build src/components/constitution && bun src/lib/advanx/compiler-cli.ts build src/components/docs-start && bun src/lib/advanx/compiler-cli.ts build src/components/waitlist && bun src/lib/advanx/compiler-cli.ts build src/components/footer",
+    "build": "bun src/lib/advanx/compiler-cli.ts build src/components/theme-toggle && bun src/lib/advanx/compiler-cli.ts build src/components/navbar && bun src/lib/advanx/compiler-cli.ts build src/components/hero && bun src/lib/advanx/compiler-cli.ts build src/components/stats && bun src/lib/advanx/compiler-cli.ts build src/components/features && bun src/lib/advanx/compiler-cli.ts build src/components/comparison && bun src/lib/advanx/compiler-cli.ts build src/components/constitution && bun src/lib/advanx/compiler-cli.ts build src/components/docs-start && bun src/lib/advanx/compiler-cli.ts build src/components/waitlist && bun src/lib/advanx/compiler-cli.ts build src/components/footer && bun src/lib/advanx/compiler-cli.ts build src/components/gallery",
     "dev": "bun x serve ."
   },
   "devDependencies": {
