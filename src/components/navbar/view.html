@@ -1,21 +1,16 @@
 <header class="navbar">
     <button class="nav-logo" ax-on:click="goHome" aria-label="Go to home">
-        <span class="nav-logo-main">Advanx</span
-        ><span class="nav-logo-accent">JS.</span>
+        <span class="nav-logo-main">Advanx</span><span class="nav-logo-accent">JS.</span>
     </button>
     <nav class="nav-links" aria-label="Main navigation">
         <button class="nav-link" ax-on:click="goFeatures">Features</button>
         <button class="nav-link" ax-on:click="goComponents">Components</button>
-        <button class="nav-link" ax-on:click="goConstitution">
-            The Constitution
-        </button>
+        <button class="nav-link" ax-on:click="goConstitution">The Constitution</button>
         <button class="nav-link" ax-on:click="goDocs">Docs</button>
+        <a class="nav-link nav-link--ext" href="https://github.com/rahuldodwe/advanxjs" target="_blank" rel="noopener noreferrer">GitHub</a>
     </nav>
-    <a
-        class="nav-github"
-        href="https://github.com/rahuldodwe/advanxjs"
-        target="_blank"
-        rel="noopener noreferrer"
-        >GitHub</a
-    >
+    <button class="theme-toggle" ax-on:click="toggle" aria-label="Toggle color theme">
+        <span class="theme-toggle-dot"></span>
+        <span class="theme-toggle-label">{{ themeLabel }}</span>
+    </button>
 </header>

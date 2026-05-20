@@ -1,8 +1,19 @@
-import { signal } from "../../lib/advanx/runtime.ts";
+import { signal, computed } from "../../lib/advanx/runtime.ts";
 
 export const activeTab = signal<
   "home" | "features" | "docs" | "constitution" | "components"
 >("home");
+
+const initial = (document.documentElement.dataset.theme === "dark" ? "dark" : "light") as "light" | "dark";
+export const theme = signal<"light" | "dark">(initial);
+export const themeLabel = computed(() => (theme.value === "dark" ? "DARK" : "LIGHT"));
+
+export function toggle() {
+  const next = theme.value === "dark" ? "light" : "dark";
+  theme.value = next;
+  document.documentElement.dataset.theme = next;
+  try { localStorage.setItem("advanx-theme", next); } catch (_) {}
+}
 
 export function goHome() {
   activeTab.value = "home";
