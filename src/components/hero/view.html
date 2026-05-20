@@ -1,15 +1,34 @@
 <section class="hero">
     <p class="hero-meta">01 / FRAMEWORK</p>
-    <img
-        src="./assets/lockup-light.png"
-        alt="AdvanxJS"
-        class="hero-logo hero-logo--light"
-    />
-    <img
-        src="./assets/lockup-dark.png"
-        alt="AdvanxJS"
-        class="hero-logo hero-logo--dark"
-    />
+
+    <div class="hero-orbit" role="img" aria-label="AdvanxJS">
+        <svg class="hero-orbit-a" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M 96 26 L 24 174 L 50 174 L 78 116 Z" />
+            <path d="M 104 26 L 176 174 L 150 174 L 122 116 Z" />
+            <path d="M 82 124 L 118 124 L 130 150 L 70 150 Z" />
+        </svg>
+        <div class="hero-orbit-ring" aria-hidden="true">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="100" cy="100" rx="92" ry="36" />
+                <circle class="hero-orbit-dot" cx="192" cy="100" r="5" />
+            </svg>
+        </div>
+        <div class="hero-orbit-ring" aria-hidden="true">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="100" cy="100" rx="92" ry="36" transform="rotate(60 100 100)" />
+                <circle class="hero-orbit-dot" cx="100" cy="100" r="4" transform="rotate(60 100 100) translate(92 0)" />
+            </svg>
+        </div>
+        <div class="hero-orbit-ring" aria-hidden="true">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="100" cy="100" rx="92" ry="36" transform="rotate(-60 100 100)" />
+                <circle class="hero-orbit-dot" cx="100" cy="100" r="4" transform="rotate(-60 100 100) translate(92 0)" />
+            </svg>
+        </div>
+    </div>
+
+    <div class="hero-wordmark"><span class="hero-wordmark-main">Advanx</span><span class="hero-wordmark-accent">JS.</span></div>
+
     <h1 class="hero-heading">{{ heroTitle }}</h1>
     <p class="hero-sub">
         The first framework built for the era where AI writes the code. 4KB.
