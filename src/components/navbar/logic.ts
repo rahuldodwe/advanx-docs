@@ -1,15 +1,34 @@
 import { signal } from "../../lib/advanx/runtime.ts";
 
-export const activeTab = signal<"home" | "docs" | "constitution" | "components">("home");
+export const activeTab = signal<
+  "home" | "features" | "docs" | "constitution" | "components"
+>("home");
 
 export function goHome() {
   activeTab.value = "home";
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  if (window.location.pathname === "/") {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } else {
+    window.location.href = "/";
+  }
+}
+
+export function goFeatures() {
+  activeTab.value = "features";
+  if (window.location.pathname === "/") {
+    document.querySelector(".features")?.scrollIntoView({ behavior: "smooth" });
+  } else {
+    window.location.href = "/#features";
+  }
 }
 
 export function goDocs() {
   activeTab.value = "docs";
-  document.querySelector(".features")?.scrollIntoView({ behavior: "smooth" });
+  if (window.location.pathname === "/") {
+    document.querySelector(".docs-start")?.scrollIntoView({ behavior: "smooth" });
+  } else {
+    window.location.href = "/#docs-start";
+  }
 }
 
 export function goConstitution() {

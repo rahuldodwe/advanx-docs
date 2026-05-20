@@ -68,6 +68,15 @@
             <script src="./src/components/docs-start/dist/bundle.js"></script>
             <script src="./src/components/waitlist/dist/bundle.js"></script>
             <script src="./src/components/footer/dist/bundle.js"></script>
+            <script>
+                (function () {
+                    if (!window.location.hash) return;
+                    var sel = "." + window.location.hash.slice(1);
+                    requestAnimationFrame(function () {
+                        try { document.querySelector(sel)?.scrollIntoView({ behavior: "smooth" }); } catch (_) {}
+                    });
+                })();
+            </script>
         </div>
     </body>
 </html>
