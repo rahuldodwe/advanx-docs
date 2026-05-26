@@ -4,58 +4,641 @@
   <p class="gallery-sub">Drop-in primitives. One command. Three files each.</p>
 
   <div class="gallery-grid">
+
+    <!-- ── NAVBAR ── -->
     <article class="gallery-card">
-      <div class="card-preview">
-        <iframe
-          class="preview-frame"
-          src="/components/preview/navbar/"
-          title="Live preview of Navbar"
-          loading="lazy"
-          tabindex="-1"
-          aria-hidden="true"></iframe>
+      <div class="card-preview" ax-on:click="openNavbarPreview">
+        <div class="thumbnail-wrap">
+          <nav class="navbar">
+            <div class="navbar-brand">
+              <a class="navbar-logo">AdvanxJS</a>
+            </div>
+            <ul class="navbar-desktop">
+              <li><a>Home</a></li>
+              <li><a>Docs</a></li>
+              <li><a>Components</a></li>
+              <li><a>GitHub</a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
       <div class="card-meta">
         <h3 class="card-title">Navbar</h3>
-        <p class="card-desc">Sticky header with logo, navigation, and CTA.</p>
+        <p class="card-desc">Responsive header with logo, navigation links, and mobile toggle.</p>
         <code class="card-cmd">advanx add navbar</code>
         <button class="card-copy" ax-on:click="copyNavbar">Copy</button>
       </div>
     </article>
 
+    <!-- ── HERO-SIMPLE ── -->
     <article class="gallery-card">
-      <div class="card-preview card-preview--stats">
-        <iframe
-          class="preview-frame"
-          src="/components/preview/stats/"
-          title="Live preview of Stats Card"
-          loading="lazy"
-          tabindex="-1"
-          aria-hidden="true"></iframe>
+      <div class="card-preview" ax-on:click="openHeroSimplePreview">
+        <div class="thumbnail-wrap">
+          <section class="hero-simple">
+            <div class="hero-content">
+              <h1 class="hero-title">Build Faster</h1>
+              <p class="hero-subtitle">Ship production-ready UIs with a single command. No config, no complexity.</p>
+              <a class="hero-cta">Get Started</a>
+            </div>
+          </section>
+        </div>
       </div>
       <div class="card-meta">
-        <h3 class="card-title">Stats Card</h3>
-        <p class="card-desc">Framework status card with key/value metrics.</p>
-        <code class="card-cmd">advanx add stats</code>
-        <button class="card-copy" ax-on:click="copyStats">Copy</button>
+        <h3 class="card-title">Hero Simple</h3>
+        <p class="card-desc">Full-height hero section with gradient background, headline, and CTA.</p>
+        <code class="card-cmd">advanx add hero-simple</code>
+        <button class="card-copy" ax-on:click="copyHeroSimple">Copy</button>
       </div>
     </article>
 
-    <article class="gallery-card gallery-card--pro">
-      <div class="card-preview card-preview--locked">
-        <div class="lock-glyph" aria-hidden="true">&#x1F512;</div>
-        <div class="pro-wordmark">PRO</div>
+    <!-- ── BUTTON-GROUP ── -->
+    <article class="gallery-card">
+      <div class="card-preview" ax-on:click="openButtonGroupPreview">
+        <div class="thumbnail-wrap">
+          <div class="thumbnail-center thumbnail-center--dark">
+            <div class="button-group">
+              <button class="btn btn-primary">Get Started</button>
+              <button class="btn btn-secondary">Learn More</button>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="card-meta">
-        <h3 class="card-title">
-          Dashboard Pro
-          <span class="pro-badge">COMING SOON</span>
-        </h3>
-        <p class="card-desc">Full admin dashboard with charts, tables, and auth flows.</p>
-        <code class="card-cmd card-cmd--disabled">advanx add dashboard-pro</code>
-        <button class="card-copy card-copy--disabled" ax-on:click="copyDashboard" disabled>Locked</button>
+        <h3 class="card-title">Button Group</h3>
+        <p class="card-desc">Paired primary and secondary action buttons with hover effects.</p>
+        <code class="card-cmd">advanx add button-group</code>
+        <button class="card-copy" ax-on:click="copyButtonGroup">Copy</button>
       </div>
     </article>
+
+    <!-- ── FOOTER-SIMPLE ── -->
+    <article class="gallery-card">
+      <div class="card-preview" ax-on:click="openFooterSimplePreview">
+        <div class="thumbnail-wrap">
+          <footer class="footer-simple">
+            <div class="footer-simple-inner">
+              <span class="footer-simple-brand">AdvanxJS</span>
+              <nav class="footer-simple-social">
+                <a>GitHub</a>
+                <a>Twitter</a>
+                <a>Discord</a>
+              </nav>
+              <p class="footer-simple-copy">© 2025 AdvanxJS</p>
+            </div>
+          </footer>
+        </div>
+      </div>
+      <div class="card-meta">
+        <h3 class="card-title">Footer Simple</h3>
+        <p class="card-desc">Minimal footer with brand, social links, and copyright line.</p>
+        <code class="card-cmd">advanx add footer-simple</code>
+        <button class="card-copy" ax-on:click="copyFooterSimple">Copy</button>
+      </div>
+    </article>
+
+    <!-- ── LOGIN-FORM ── -->
+    <article class="gallery-card">
+      <div class="card-preview" ax-on:click="openLoginFormPreview">
+        <div class="thumbnail-wrap">
+          <div class="thumbnail-center thumbnail-center--dark">
+            <div class="login-form">
+              <h2 class="login-form-title">Welcome back</h2>
+              <p class="login-form-subtitle">Sign in to your AdvanxJS account</p>
+              <label class="login-form-field">
+                <span>Email</span>
+                <input type="email" placeholder="you@example.com" />
+              </label>
+              <label class="login-form-field">
+                <span>Password</span>
+                <input type="password" placeholder="••••••••" />
+              </label>
+              <button type="button" class="login-form-submit">Sign In</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-meta">
+        <h3 class="card-title">Login Form</h3>
+        <p class="card-desc">Email and password sign-in card with validation feedback.</p>
+        <code class="card-cmd">advanx add login-form</code>
+        <button class="card-copy" ax-on:click="copyLoginForm">Copy</button>
+      </div>
+    </article>
+
+    <!-- ── PRICING-TABLE ── -->
+    <article class="gallery-card">
+      <div class="card-preview" ax-on:click="openPricingTablePreview">
+        <div class="thumbnail-wrap">
+          <section class="pricing-table">
+            <header class="pricing-table-head">
+              <h2>Simple, transparent pricing</h2>
+              <p class="pricing-table-billing">Billed monthly</p>
+            </header>
+            <div class="pricing-table-grid">
+              <article class="pricing-card">
+                <h3>Basic</h3>
+                <p class="pricing-card-price"><span class="amount">$9</span><span class="period">/mo</span></p>
+                <ul class="pricing-card-features">
+                  <li>Up to 3 projects</li>
+                  <li>Community support</li>
+                  <li>1 GB storage</li>
+                </ul>
+                <button type="button" class="pricing-card-cta">Get Started</button>
+              </article>
+              <article class="pricing-card pricing-card-popular">
+                <span class="pricing-card-badge">Most Popular</span>
+                <h3>Pro</h3>
+                <p class="pricing-card-price"><span class="amount">$29</span><span class="period">/mo</span></p>
+                <ul class="pricing-card-features">
+                  <li>Unlimited projects</li>
+                  <li>Priority support</li>
+                  <li>50 GB storage</li>
+                  <li>Advanced analytics</li>
+                </ul>
+                <button type="button" class="pricing-card-cta pricing-card-cta-primary">Go Pro</button>
+              </article>
+              <article class="pricing-card">
+                <h3>Enterprise</h3>
+                <p class="pricing-card-price"><span class="amount">$99</span><span class="period">/mo</span></p>
+                <ul class="pricing-card-features">
+                  <li>Everything in Pro</li>
+                  <li>Dedicated support</li>
+                  <li>Unlimited storage</li>
+                  <li>SSO &amp; audit logs</li>
+                </ul>
+                <button type="button" class="pricing-card-cta">Contact Sales</button>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="card-meta">
+        <h3 class="card-title">Pricing Table</h3>
+        <p class="card-desc">Three-tier pricing grid with monthly/annual toggle and popular badge.</p>
+        <code class="card-cmd">advanx add pricing-table</code>
+        <button class="card-copy" ax-on:click="copyPricingTable">Copy</button>
+      </div>
+    </article>
+
+    <!-- ── FAQ-ACCORDION ── -->
+    <article class="gallery-card">
+      <div class="card-preview" ax-on:click="openFaqAccordionPreview">
+        <div class="thumbnail-wrap">
+          <section class="faq-accordion">
+            <h2 class="faq-accordion-title">Frequently asked questions</h2>
+            <details class="faq-accordion-item">
+              <summary class="faq-accordion-q">What is AdvanxJS?</summary>
+              <p class="faq-accordion-a">A lightweight agent-native framework for shipping UIs with a single command.</p>
+            </details>
+            <details class="faq-accordion-item">
+              <summary class="faq-accordion-q">How do I add a component?</summary>
+              <p class="faq-accordion-a">Run <code>advanx add &lt;name&gt;</code> in your project root.</p>
+            </details>
+            <details class="faq-accordion-item">
+              <summary class="faq-accordion-q">Is it free to use?</summary>
+              <p class="faq-accordion-a">Yes — the core library and all base components are open source.</p>
+            </details>
+          </section>
+        </div>
+      </div>
+      <div class="card-meta">
+        <h3 class="card-title">FAQ Accordion</h3>
+        <p class="card-desc">Accessible details/summary accordion with smooth open/close indicator.</p>
+        <code class="card-cmd">advanx add faq-accordion</code>
+        <button class="card-copy" ax-on:click="copyFaqAccordion">Copy</button>
+      </div>
+    </article>
+
+    <!-- ── CARD-PRODUCT ── -->
+    <article class="gallery-card">
+      <div class="card-preview" ax-on:click="openCardProductPreview">
+        <div class="thumbnail-wrap">
+          <div class="thumbnail-center thumbnail-center--mid">
+            <article class="card-product">
+              <div class="card-product-media" aria-hidden="true"></div>
+              <div class="card-product-body">
+                <h3 class="card-product-title">Wireless Headphones</h3>
+                <p class="card-product-price">$129.00</p>
+                <button type="button" class="card-product-cta">Add to Cart</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+      <div class="card-meta">
+        <h3 class="card-title">Card Product</h3>
+        <p class="card-desc">E-commerce product card with media area, price, and cart action.</p>
+        <code class="card-cmd">advanx add card-product</code>
+        <button class="card-copy" ax-on:click="copyCardProduct">Copy</button>
+      </div>
+    </article>
+
+    <!-- ── CONTACT-SECTION ── -->
+    <article class="gallery-card">
+      <div class="card-preview" ax-on:click="openContactSectionPreview">
+        <div class="thumbnail-wrap">
+          <section class="contact-section">
+            <div class="contact-section-inner">
+              <header class="contact-section-head">
+                <h2>Get in touch</h2>
+                <p>We usually respond within one business day.</p>
+              </header>
+              <div class="contact-section-form">
+                <label class="contact-section-field">
+                  <span>Name</span>
+                  <input type="text" placeholder="Jane Doe" />
+                </label>
+                <label class="contact-section-field">
+                  <span>Email</span>
+                  <input type="email" placeholder="jane@example.com" />
+                </label>
+                <label class="contact-section-field">
+                  <span>Message</span>
+                  <textarea rows="3" placeholder="How can we help?"></textarea>
+                </label>
+                <button type="button" class="contact-section-submit">Send Message</button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="card-meta">
+        <h3 class="card-title">Contact Section</h3>
+        <p class="card-desc">Contact form with name, email, textarea, and success state animation.</p>
+        <code class="card-cmd">advanx add contact-section</code>
+        <button class="card-copy" ax-on:click="copyContactSection">Copy</button>
+      </div>
+    </article>
+
+    <!-- ── SIDEBAR-NAV ── -->
+    <article class="gallery-card">
+      <div class="card-preview" ax-on:click="openSidebarNavPreview">
+        <div class="thumbnail-wrap">
+          <aside class="sidebar-nav">
+            <div class="sidebar-nav-head">
+              <span class="sidebar-nav-brand">AdvanxJS</span>
+              <button type="button" class="sidebar-nav-toggle">‹</button>
+            </div>
+            <nav class="sidebar-nav-menu">
+              <a class="sidebar-nav-link" href="#">
+                <span class="sidebar-nav-icon">◧</span>
+                <span class="sidebar-nav-label">Dashboard</span>
+              </a>
+              <a class="sidebar-nav-link" href="#">
+                <span class="sidebar-nav-icon">◴</span>
+                <span class="sidebar-nav-label">Analytics</span>
+              </a>
+              <a class="sidebar-nav-link" href="#">
+                <span class="sidebar-nav-icon">▤</span>
+                <span class="sidebar-nav-label">Projects</span>
+              </a>
+              <a class="sidebar-nav-link" href="#">
+                <span class="sidebar-nav-icon">⚙</span>
+                <span class="sidebar-nav-label">Settings</span>
+              </a>
+            </nav>
+          </aside>
+        </div>
+      </div>
+      <div class="card-meta">
+        <h3 class="card-title">Sidebar Nav</h3>
+        <p class="card-desc">Collapsible sidebar with icon links and expand/collapse toggle.</p>
+        <code class="card-cmd">advanx add sidebar-nav</code>
+        <button class="card-copy" ax-on:click="copySidebarNav">Copy</button>
+      </div>
+    </article>
+
   </div>
 
   <p class="gallery-toast" ax-if="isCopied">Copied to clipboard</p>
+
+  <!-- ══════════════════ PREVIEW MODALS ══════════════════ -->
+
+  <!-- NAVBAR MODAL -->
+  <div class="preview-modal" ax-if="navbarPreview">
+    <div class="preview-modal-backdrop" ax-on:click="closePreview"></div>
+    <div class="preview-modal-panel">
+      <div class="preview-modal-header">
+        <span class="preview-modal-title">Navbar</span>
+        <code class="preview-modal-cmd">advanx add navbar</code>
+        <button class="preview-modal-close" ax-on:click="closePreview">✕</button>
+      </div>
+      <div class="preview-modal-body">
+        <div class="thumbnail-wrap">
+          <nav class="navbar">
+            <div class="navbar-brand">
+              <a class="navbar-logo">AdvanxJS</a>
+            </div>
+            <ul class="navbar-desktop">
+              <li><a>Home</a></li>
+              <li><a>Docs</a></li>
+              <li><a>Components</a></li>
+              <li><a>GitHub</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO-SIMPLE MODAL -->
+  <div class="preview-modal" ax-if="heroSimplePreview">
+    <div class="preview-modal-backdrop" ax-on:click="closePreview"></div>
+    <div class="preview-modal-panel">
+      <div class="preview-modal-header">
+        <span class="preview-modal-title">Hero Simple</span>
+        <code class="preview-modal-cmd">advanx add hero-simple</code>
+        <button class="preview-modal-close" ax-on:click="closePreview">✕</button>
+      </div>
+      <div class="preview-modal-body">
+        <div class="thumbnail-wrap">
+          <section class="hero-simple">
+            <div class="hero-content">
+              <h1 class="hero-title">Build Faster</h1>
+              <p class="hero-subtitle">Ship production-ready UIs with a single command. No config, no complexity.</p>
+              <a class="hero-cta">Get Started</a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUTTON-GROUP MODAL -->
+  <div class="preview-modal" ax-if="buttonGroupPreview">
+    <div class="preview-modal-backdrop" ax-on:click="closePreview"></div>
+    <div class="preview-modal-panel">
+      <div class="preview-modal-header">
+        <span class="preview-modal-title">Button Group</span>
+        <code class="preview-modal-cmd">advanx add button-group</code>
+        <button class="preview-modal-close" ax-on:click="closePreview">✕</button>
+      </div>
+      <div class="preview-modal-body">
+        <div class="thumbnail-wrap">
+          <div class="thumbnail-center thumbnail-center--dark">
+            <div class="button-group">
+              <button class="btn btn-primary">Get Started</button>
+              <button class="btn btn-secondary">Learn More</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER-SIMPLE MODAL -->
+  <div class="preview-modal" ax-if="footerSimplePreview">
+    <div class="preview-modal-backdrop" ax-on:click="closePreview"></div>
+    <div class="preview-modal-panel">
+      <div class="preview-modal-header">
+        <span class="preview-modal-title">Footer Simple</span>
+        <code class="preview-modal-cmd">advanx add footer-simple</code>
+        <button class="preview-modal-close" ax-on:click="closePreview">✕</button>
+      </div>
+      <div class="preview-modal-body">
+        <div class="thumbnail-wrap">
+          <footer class="footer-simple">
+            <div class="footer-simple-inner">
+              <span class="footer-simple-brand">AdvanxJS</span>
+              <nav class="footer-simple-social">
+                <a>GitHub</a>
+                <a>Twitter</a>
+                <a>Discord</a>
+              </nav>
+              <p class="footer-simple-copy">© 2025 AdvanxJS</p>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGIN-FORM MODAL -->
+  <div class="preview-modal" ax-if="loginFormPreview">
+    <div class="preview-modal-backdrop" ax-on:click="closePreview"></div>
+    <div class="preview-modal-panel">
+      <div class="preview-modal-header">
+        <span class="preview-modal-title">Login Form</span>
+        <code class="preview-modal-cmd">advanx add login-form</code>
+        <button class="preview-modal-close" ax-on:click="closePreview">✕</button>
+      </div>
+      <div class="preview-modal-body">
+        <div class="thumbnail-wrap">
+          <div class="thumbnail-center thumbnail-center--dark">
+            <div class="login-form">
+              <h2 class="login-form-title">Welcome back</h2>
+              <p class="login-form-subtitle">Sign in to your AdvanxJS account</p>
+              <label class="login-form-field">
+                <span>Email</span>
+                <input type="email" placeholder="you@example.com" />
+              </label>
+              <label class="login-form-field">
+                <span>Password</span>
+                <input type="password" placeholder="••••••••" />
+              </label>
+              <button type="button" class="login-form-submit">Sign In</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING-TABLE MODAL -->
+  <div class="preview-modal" ax-if="pricingTablePreview">
+    <div class="preview-modal-backdrop" ax-on:click="closePreview"></div>
+    <div class="preview-modal-panel">
+      <div class="preview-modal-header">
+        <span class="preview-modal-title">Pricing Table</span>
+        <code class="preview-modal-cmd">advanx add pricing-table</code>
+        <button class="preview-modal-close" ax-on:click="closePreview">✕</button>
+      </div>
+      <div class="preview-modal-body">
+        <div class="thumbnail-wrap">
+          <section class="pricing-table">
+            <header class="pricing-table-head">
+              <h2>Simple, transparent pricing</h2>
+              <p class="pricing-table-billing">Billed monthly</p>
+            </header>
+            <div class="pricing-table-grid">
+              <article class="pricing-card">
+                <h3>Basic</h3>
+                <p class="pricing-card-price"><span class="amount">$9</span><span class="period">/mo</span></p>
+                <ul class="pricing-card-features">
+                  <li>Up to 3 projects</li>
+                  <li>Community support</li>
+                  <li>1 GB storage</li>
+                </ul>
+                <button type="button" class="pricing-card-cta">Get Started</button>
+              </article>
+              <article class="pricing-card pricing-card-popular">
+                <span class="pricing-card-badge">Most Popular</span>
+                <h3>Pro</h3>
+                <p class="pricing-card-price"><span class="amount">$29</span><span class="period">/mo</span></p>
+                <ul class="pricing-card-features">
+                  <li>Unlimited projects</li>
+                  <li>Priority support</li>
+                  <li>50 GB storage</li>
+                  <li>Advanced analytics</li>
+                </ul>
+                <button type="button" class="pricing-card-cta pricing-card-cta-primary">Go Pro</button>
+              </article>
+              <article class="pricing-card">
+                <h3>Enterprise</h3>
+                <p class="pricing-card-price"><span class="amount">$99</span><span class="period">/mo</span></p>
+                <ul class="pricing-card-features">
+                  <li>Everything in Pro</li>
+                  <li>Dedicated support</li>
+                  <li>Unlimited storage</li>
+                  <li>SSO &amp; audit logs</li>
+                </ul>
+                <button type="button" class="pricing-card-cta">Contact Sales</button>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ-ACCORDION MODAL -->
+  <div class="preview-modal" ax-if="faqAccordionPreview">
+    <div class="preview-modal-backdrop" ax-on:click="closePreview"></div>
+    <div class="preview-modal-panel">
+      <div class="preview-modal-header">
+        <span class="preview-modal-title">FAQ Accordion</span>
+        <code class="preview-modal-cmd">advanx add faq-accordion</code>
+        <button class="preview-modal-close" ax-on:click="closePreview">✕</button>
+      </div>
+      <div class="preview-modal-body">
+        <div class="thumbnail-wrap">
+          <section class="faq-accordion">
+            <h2 class="faq-accordion-title">Frequently asked questions</h2>
+            <details class="faq-accordion-item">
+              <summary class="faq-accordion-q">What is AdvanxJS?</summary>
+              <p class="faq-accordion-a">A lightweight agent-native framework for shipping UIs with a single command.</p>
+            </details>
+            <details class="faq-accordion-item">
+              <summary class="faq-accordion-q">How do I add a component?</summary>
+              <p class="faq-accordion-a">Run <code>advanx add &lt;name&gt;</code> in your project root.</p>
+            </details>
+            <details class="faq-accordion-item">
+              <summary class="faq-accordion-q">Is it free to use?</summary>
+              <p class="faq-accordion-a">Yes — the core library and all base components are open source.</p>
+            </details>
+            <details class="faq-accordion-item">
+              <summary class="faq-accordion-q">Do I need a build tool?</summary>
+              <p class="faq-accordion-a">No — AdvanxJS ships as a single 4KB runtime with zero required config.</p>
+            </details>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD-PRODUCT MODAL -->
+  <div class="preview-modal" ax-if="cardProductPreview">
+    <div class="preview-modal-backdrop" ax-on:click="closePreview"></div>
+    <div class="preview-modal-panel">
+      <div class="preview-modal-header">
+        <span class="preview-modal-title">Card Product</span>
+        <code class="preview-modal-cmd">advanx add card-product</code>
+        <button class="preview-modal-close" ax-on:click="closePreview">✕</button>
+      </div>
+      <div class="preview-modal-body">
+        <div class="thumbnail-wrap">
+          <div class="thumbnail-center thumbnail-center--mid">
+            <article class="card-product">
+              <div class="card-product-media" aria-hidden="true"></div>
+              <div class="card-product-body">
+                <h3 class="card-product-title">Wireless Headphones</h3>
+                <p class="card-product-price">$129.00</p>
+                <button type="button" class="card-product-cta">Add to Cart</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT-SECTION MODAL -->
+  <div class="preview-modal" ax-if="contactSectionPreview">
+    <div class="preview-modal-backdrop" ax-on:click="closePreview"></div>
+    <div class="preview-modal-panel">
+      <div class="preview-modal-header">
+        <span class="preview-modal-title">Contact Section</span>
+        <code class="preview-modal-cmd">advanx add contact-section</code>
+        <button class="preview-modal-close" ax-on:click="closePreview">✕</button>
+      </div>
+      <div class="preview-modal-body">
+        <div class="thumbnail-wrap">
+          <section class="contact-section">
+            <div class="contact-section-inner">
+              <header class="contact-section-head">
+                <h2>Get in touch</h2>
+                <p>We usually respond within one business day.</p>
+              </header>
+              <div class="contact-section-form">
+                <label class="contact-section-field">
+                  <span>Name</span>
+                  <input type="text" placeholder="Jane Doe" />
+                </label>
+                <label class="contact-section-field">
+                  <span>Email</span>
+                  <input type="email" placeholder="jane@example.com" />
+                </label>
+                <label class="contact-section-field">
+                  <span>Message</span>
+                  <textarea rows="4" placeholder="How can we help?"></textarea>
+                </label>
+                <button type="button" class="contact-section-submit">Send Message</button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR-NAV MODAL -->
+  <div class="preview-modal" ax-if="sidebarNavPreview">
+    <div class="preview-modal-backdrop" ax-on:click="closePreview"></div>
+    <div class="preview-modal-panel">
+      <div class="preview-modal-header">
+        <span class="preview-modal-title">Sidebar Nav</span>
+        <code class="preview-modal-cmd">advanx add sidebar-nav</code>
+        <button class="preview-modal-close" ax-on:click="closePreview">✕</button>
+      </div>
+      <div class="preview-modal-body">
+        <div class="thumbnail-wrap">
+          <aside class="sidebar-nav">
+            <div class="sidebar-nav-head">
+              <span class="sidebar-nav-brand">AdvanxJS</span>
+              <button type="button" class="sidebar-nav-toggle">‹</button>
+            </div>
+            <nav class="sidebar-nav-menu">
+              <a class="sidebar-nav-link" href="#">
+                <span class="sidebar-nav-icon">◧</span>
+                <span class="sidebar-nav-label">Dashboard</span>
+              </a>
+              <a class="sidebar-nav-link" href="#">
+                <span class="sidebar-nav-icon">◴</span>
+                <span class="sidebar-nav-label">Analytics</span>
+              </a>
+              <a class="sidebar-nav-link" href="#">
+                <span class="sidebar-nav-icon">▤</span>
+                <span class="sidebar-nav-label">Projects</span>
+              </a>
+              <a class="sidebar-nav-link" href="#">
+                <span class="sidebar-nav-icon">⚙</span>
+                <span class="sidebar-nav-label">Settings</span>
+              </a>
+            </nav>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </section>

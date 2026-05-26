@@ -32,6 +32,8 @@ export function wireConditionals(root: Element, logic: any) {
     const key = element.getAttribute('ax-if');
     const sig = logic[key!];
     if (!sig || !('value' in sig)) return;
+    // Wire events now — the element may be detached before wireEvents(root) runs
+    wireEvents(element, logic);
     const placeholder = document.createComment(` ax-if: ${key} `);
     let isMounted = true;
     effect(() => {
