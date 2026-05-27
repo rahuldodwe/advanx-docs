@@ -1,0 +1,457 @@
+<section class="docs">
+  <p class="docs-meta">/ DOCS</p>
+  <h2 class="docs-heading">AdvanxJS Documentation</h2>
+  <p class="docs-sub">Core pillars, directive API, CLI reference, and complete specs for all 10 registry components.</p>
+
+  <!-- ══════════════════════════════════════════════
+       01 / THE TRINITY PATTERN
+  ══════════════════════════════════════════════ -->
+  <div class="docs-section">
+    <div class="docs-section-header">
+      <span class="docs-section-num">01</span>
+      <h3 class="docs-section-title">The Trinity Pattern</h3>
+    </div>
+    <p class="docs-section-desc">Every AdvanxJS component is exactly three files — no exceptions. Logic lives in TypeScript, markup in HTML, styles in CSS. They never mix.</p>
+    <div class="trinity-grid">
+      <div class="trinity-card">
+        <p class="trinity-label">logic.ts</p>
+        <pre class="code-pre"><code><span class="code-kw">import</span> { signal } <span class="code-kw">from</span> <span class="code-str">"advanxjs"</span>;
+
+<span class="code-kw">export const</span> <span class="code-key">count</span> = signal(<span class="code-val">0</span>);
+
+<span class="code-kw">export function</span> <span class="code-fn">increment</span>() {
+  count.value++;
+}</code></pre>
+      </div>
+      <div class="trinity-card">
+        <p class="trinity-label">view.html</p>
+        <pre class="code-pre"><code>&lt;p&gt;Count: &#123;&#123; count &#125;&#125;&lt;/p&gt;
+
+&lt;button ax-on:click=<span class="code-str">"increment"</span>&gt;
+  Add
+&lt;/button&gt;</code></pre>
+      </div>
+      <div class="trinity-card">
+        <p class="trinity-label">style.css</p>
+        <pre class="code-pre"><code>p {
+  font-size: <span class="code-val">1.5rem</span>;
+  font-weight: <span class="code-val">700</span>;
+  color: <span class="code-fn">var</span>(--ax-brand);
+}
+
+button { cursor: pointer; }</code></pre>
+      </div>
+    </div>
+    <p class="docs-note">The compiler validates every binding at build time. If <code class="inline-code">view.html</code> references a signal or function that isn't exported from <code class="inline-code">logic.ts</code>, the build fails loudly. No runtime surprises.</p>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       02 / SIGNALS
+  ══════════════════════════════════════════════ -->
+  <div class="docs-section">
+    <div class="docs-section-header">
+      <span class="docs-section-num">02</span>
+      <h3 class="docs-section-title">Signals</h3>
+    </div>
+    <p class="docs-section-desc">AdvanxJS uses three reactive primitives from <code class="inline-code">@preact/signals-core</code>. All state flows through signals — never through imperative DOM manipulation.</p>
+    <div class="signal-grid">
+      <div class="signal-card">
+        <p class="signal-name">signal(initialValue)</p>
+        <p class="signal-desc">Writable reactive value. Read and write via <code class="inline-code">.value</code>. Any change triggers DOM updates automatically.</p>
+      </div>
+      <div class="signal-card">
+        <p class="signal-name">computed(() =&gt; expr)</p>
+        <p class="signal-desc">Read-only derived value. Recomputes automatically when its dependencies change. Cannot be written to.</p>
+      </div>
+      <div class="signal-card">
+        <p class="signal-name">effect(() =&gt; fn)</p>
+        <p class="signal-desc">Side-effect runner. Re-executes whenever its signal dependencies change. Used internally by the runtime to wire DOM updates.</p>
+      </div>
+    </div>
+    <div class="code-block">
+      <div class="code-header"><span class="code-lang">typescript — logic.ts</span></div>
+      <pre class="code-pre"><code><span class="code-kw">import</span> { signal, computed } <span class="code-kw">from</span> <span class="code-str">"advanxjs"</span>;
+
+<span class="code-comment">// Writable signal — user toggles this</span>
+<span class="code-kw">export const</span> <span class="code-key">isYearly</span> = signal(<span class="code-val">false</span>);
+
+<span class="code-comment">// Computed — derives from isYearly automatically</span>
+<span class="code-kw">export const</span> <span class="code-key">proPrice</span> = computed(() =&gt;
+  isYearly.value ? <span class="code-str">"$290/yr"</span> : <span class="code-str">"$29/mo"</span>
+);
+<span class="code-kw">export const</span> <span class="code-key">period</span> = computed(() =&gt;
+  isYearly.value ? <span class="code-str">"/year"</span> : <span class="code-str">"/month"</span>
+);
+
+<span class="code-comment">// Action — mutates the signal</span>
+<span class="code-kw">export function</span> <span class="code-fn">toggleBilling</span>() {
+  isYearly.value = !isYearly.value;
+}</code></pre>
+    </div>
+    <p class="docs-note"><strong>Rule:</strong> computed values are read-only in the view. You cannot bind <code class="inline-code">ax-model</code> to a computed — only to a writable signal.</p>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       03 / DIRECTIVES REFERENCE
+  ══════════════════════════════════════════════ -->
+  <div class="docs-section">
+    <div class="docs-section-header">
+      <span class="docs-section-num">03</span>
+      <h3 class="docs-section-title">Directives Reference</h3>
+    </div>
+    <p class="docs-section-desc">Directives are HTML attributes that bind the view to logic. All values must be bare identifiers — no expressions, no ternaries, no inline JS.</p>
+    <div class="docs-table-wrap">
+      <table class="docs-table">
+        <thead>
+          <tr>
+            <th>Directive</th>
+            <th>Syntax</th>
+            <th>Purpose</th>
+            <th>Constraint</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>&#123;&#123; &#125;&#125;</code></td>
+            <td><code>&#123;&#123; count &#125;&#125;</code></td>
+            <td>Text interpolation — replaces the expression with the signal's current value</td>
+            <td class="td-muted">Signal or computed only. Nested paths (e.g. <code>item.label</code>) supported inside <code>ax-for</code> loops.</td>
+          </tr>
+          <tr>
+            <td><code>ax-if</code></td>
+            <td><code>ax-if="isOpen"</code></td>
+            <td>Conditionally mounts/unmounts the element. Falsy → replaced by a comment placeholder.</td>
+            <td class="td-muted">Must be a boolean signal or computed. No expressions.</td>
+          </tr>
+          <tr>
+            <td><code>ax-for</code></td>
+            <td><code>ax-for="item in items"</code></td>
+            <td>Renders the element once per array item. Alias (<code>item</code>) is available in mustaches inside the element.</td>
+            <td class="td-muted">Source must be a signal holding an array.</td>
+          </tr>
+          <tr>
+            <td><code>ax-on:EVENT</code></td>
+            <td><code>ax-on:click="submit"</code></td>
+            <td>Attaches a DOM event listener. Calls the named exported function when the event fires.</td>
+            <td class="td-muted">Value must be an exported function name, not a signal.</td>
+          </tr>
+          <tr>
+            <td><code>ax-model</code></td>
+            <td><code>ax-model="email"</code></td>
+            <td>Two-way binding for <code>&lt;input&gt;</code> and <code>&lt;textarea&gt;</code>. Syncs on <code>input</code> and <code>change</code> events.</td>
+            <td class="td-muted">Writable signals only — not computed.</td>
+          </tr>
+          <tr>
+            <td><code>ax-link</code></td>
+            <td><code>ax-link="/about"</code></td>
+            <td>SPA navigation. Updates the URL without a full page reload. Triggers popstate for back/forward.</td>
+            <td class="td-muted">Static path string. Dynamic paths must use <code>window.location.href</code> in logic.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="code-block">
+      <div class="code-header"><span class="code-lang">html — view.html — all directives in one component</span></div>
+      <pre class="code-pre"><code><span class="code-comment">&lt;!-- Mustache --&gt;</span>
+&lt;p&gt;Hello, &#123;&#123; username &#125;&#125;!&lt;/p&gt;
+
+<span class="code-comment">&lt;!-- ax-if --&gt;</span>
+&lt;div ax-if=<span class="code-str">"isLoggedIn"</span>&gt;Dashboard&lt;/div&gt;
+
+<span class="code-comment">&lt;!-- ax-for --&gt;</span>
+&lt;li ax-for=<span class="code-str">"item in items"</span>&gt;&#123;&#123; item.label &#125;&#125;&lt;/li&gt;
+
+<span class="code-comment">&lt;!-- ax-on:click --&gt;</span>
+&lt;button ax-on:click=<span class="code-str">"logout"</span>&gt;Sign out&lt;/button&gt;
+
+<span class="code-comment">&lt;!-- ax-model --&gt;</span>
+&lt;input ax-model=<span class="code-str">"email"</span> type=<span class="code-str">"email"</span> /&gt;
+
+<span class="code-comment">&lt;!-- ax-link --&gt;</span>
+&lt;a ax-link=<span class="code-str">"/profile"</span>&gt;My Profile&lt;/a&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       04 / CLI REFERENCE
+  ══════════════════════════════════════════════ -->
+  <div class="docs-section">
+    <div class="docs-section-header">
+      <span class="docs-section-num">04</span>
+      <h3 class="docs-section-title">CLI Reference</h3>
+    </div>
+    <p class="docs-section-desc">The <code class="inline-code">advanx</code> CLI handles scaffolding, building, serving, and adding registry components.</p>
+    <div class="docs-table-wrap">
+      <table class="docs-table">
+        <thead>
+          <tr>
+            <th>Command</th>
+            <th>Usage</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>create</code></td>
+            <td><code>advanx create my-app</code></td>
+            <td>Scaffold a new AdvanxJS project with the counter starter template.</td>
+          </tr>
+          <tr>
+            <td><code>build</code></td>
+            <td><code>advanx build src/components/navbar</code></td>
+            <td>Compile a single component. Validates bindings, generates <code>.advanx-meta.json</code>, bundles to <code>dist/bundle.js</code>.</td>
+          </tr>
+          <tr>
+            <td><code>dev</code></td>
+            <td><code>advanx dev src/components/navbar</code></td>
+            <td>Watch mode — rebuilds on file changes with live reload.</td>
+          </tr>
+          <tr>
+            <td><code>serve</code></td>
+            <td><code>advanx serve dist</code></td>
+            <td>Static file server with SPA history fallback. No Vite, no Webpack — just Bun.</td>
+          </tr>
+          <tr>
+            <td><code>add</code></td>
+            <td><code>advanx add navbar</code></td>
+            <td>Download a component from the registry into <code>src/components/&lt;name&gt;/</code> and compile it immediately.</td>
+          </tr>
+          <tr>
+            <td><code>add --list</code></td>
+            <td><code>advanx add --list</code></td>
+            <td>Print all available registry components with their tier (free / pro).</td>
+          </tr>
+          <tr>
+            <td><code>explain</code></td>
+            <td><code>advanx explain src/components/counter</code></td>
+            <td>Print the component's signals, computed values, actions, and bindings — structured for pasting into an AI assistant.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       05 / COMPONENT REFERENCE
+  ══════════════════════════════════════════════ -->
+  <div class="docs-section">
+    <div class="docs-section-header">
+      <span class="docs-section-num">05</span>
+      <h3 class="docs-section-title">Component Reference</h3>
+    </div>
+    <p class="docs-section-desc">Full specs for all 10 registry components — signals, computed values, actions, and every directive used. Identical to <code class="inline-code">advanx explain</code> output.</p>
+    <div class="component-ref-grid">
+
+      <!-- NAVBAR -->
+      <div class="component-ref">
+        <div class="component-ref-header">
+          <span class="component-ref-name">Navbar</span>
+          <code class="component-ref-cmd">advanx add navbar</code>
+          <button class="component-ref-copy" ax-on:click="copyNavbar">Copy</button>
+        </div>
+        <pre class="code-pre"><code><span class="code-comment"># Component: navbar</span>
+<span class="code-comment"># Signals:   isMenuOpen  (boolean, default: false)</span>
+<span class="code-comment">#            navLinks    (array,   default: [{path,label}])</span>
+<span class="code-comment"># Computed:  —</span>
+<span class="code-comment"># Actions:   toggleMenu(), closeMenu()</span>
+<span class="code-comment"># Bindings:  &#123;&#123; link.label &#125;&#125;, &#123;&#123; link.path &#125;&#125;</span>
+<span class="code-comment">#            ax-if="isMenuOpen"</span>
+<span class="code-comment">#            ax-for="link in navLinks"</span>
+<span class="code-comment">#            ax-on:click="toggleMenu"</span>
+<span class="code-comment">#            ax-on:click="closeMenu"</span>
+<span class="code-comment">#            ax-link="&#123;&#123; link.path &#125;&#125;"</span></code></pre>
+      </div>
+
+      <!-- HERO-SIMPLE -->
+      <div class="component-ref">
+        <div class="component-ref-header">
+          <span class="component-ref-name">Hero Simple</span>
+          <code class="component-ref-cmd">advanx add hero-simple</code>
+          <button class="component-ref-copy" ax-on:click="copyHeroSimple">Copy</button>
+        </div>
+        <pre class="code-pre"><code><span class="code-comment"># Component: hero-simple</span>
+<span class="code-comment"># Signals:   heroTitle    (string, default: "Welcome...")</span>
+<span class="code-comment">#            heroSubtitle (string, default: "Build...")</span>
+<span class="code-comment">#            ctaText      (string, default: "Get Started")</span>
+<span class="code-comment">#            ctaLink      (string, default: "/docs")</span>
+<span class="code-comment"># Computed:  —</span>
+<span class="code-comment"># Actions:   —</span>
+<span class="code-comment"># Bindings:  &#123;&#123; heroTitle &#125;&#125;, &#123;&#123; heroSubtitle &#125;&#125;</span>
+<span class="code-comment">#            &#123;&#123; ctaText &#125;&#125;</span>
+<span class="code-comment">#            ax-link="&#123;&#123; ctaLink &#125;&#125;"</span></code></pre>
+      </div>
+
+      <!-- BUTTON-GROUP -->
+      <div class="component-ref">
+        <div class="component-ref-header">
+          <span class="component-ref-name">Button Group</span>
+          <code class="component-ref-cmd">advanx add button-group</code>
+          <button class="component-ref-copy" ax-on:click="copyButtonGroup">Copy</button>
+        </div>
+        <pre class="code-pre"><code><span class="code-comment"># Component: button-group</span>
+<span class="code-comment"># Signals:   primaryLabel   (string, default: "Confirm")</span>
+<span class="code-comment">#            secondaryLabel (string, default: "Cancel")</span>
+<span class="code-comment"># Computed:  —</span>
+<span class="code-comment"># Actions:   onPrimaryClick(), onSecondaryClick()</span>
+<span class="code-comment"># Bindings:  &#123;&#123; primaryLabel &#125;&#125;</span>
+<span class="code-comment">#            &#123;&#123; secondaryLabel &#125;&#125;</span>
+<span class="code-comment">#            ax-on:click="onPrimaryClick"</span>
+<span class="code-comment">#            ax-on:click="onSecondaryClick"</span></code></pre>
+      </div>
+
+      <!-- FOOTER-SIMPLE -->
+      <div class="component-ref">
+        <div class="component-ref-header">
+          <span class="component-ref-name">Footer Simple</span>
+          <code class="component-ref-cmd">advanx add footer-simple</code>
+          <button class="component-ref-copy" ax-on:click="copyFooterSimple">Copy</button>
+        </div>
+        <pre class="code-pre"><code><span class="code-comment"># Component: footer-simple</span>
+<span class="code-comment"># Signals:   year      (number, default: current year)</span>
+<span class="code-comment"># Computed:  copyright → "© {year} AdvanxJS..."</span>
+<span class="code-comment"># Actions:   —</span>
+<span class="code-comment"># Bindings:  &#123;&#123; copyright &#125;&#125;</span></code></pre>
+      </div>
+
+      <!-- LOGIN-FORM -->
+      <div class="component-ref">
+        <div class="component-ref-header">
+          <span class="component-ref-name">Login Form</span>
+          <code class="component-ref-cmd">advanx add login-form</code>
+          <button class="component-ref-copy" ax-on:click="copyLoginForm">Copy</button>
+        </div>
+        <pre class="code-pre"><code><span class="code-comment"># Component: login-form</span>
+<span class="code-comment"># Signals:   email    (string,  default: "")</span>
+<span class="code-comment">#            password (string,  default: "")</span>
+<span class="code-comment">#            loading  (boolean, default: false)</span>
+<span class="code-comment">#            success  (boolean, default: false)</span>
+<span class="code-comment"># Computed:  buttonLabel → "Signing in..." | "Sign In"</span>
+<span class="code-comment"># Actions:   login()</span>
+<span class="code-comment"># Bindings:  ax-model="email", ax-model="password"</span>
+<span class="code-comment">#            &#123;&#123; buttonLabel &#125;&#125;</span>
+<span class="code-comment">#            ax-if="success"</span>
+<span class="code-comment">#            ax-on:click="login"</span></code></pre>
+      </div>
+
+      <!-- PRICING-TABLE -->
+      <div class="component-ref">
+        <div class="component-ref-header">
+          <span class="component-ref-name">Pricing Table</span>
+          <code class="component-ref-cmd">advanx add pricing-table</code>
+          <button class="component-ref-copy" ax-on:click="copyPricingTable">Copy</button>
+        </div>
+        <pre class="code-pre"><code><span class="code-comment"># Component: pricing-table</span>
+<span class="code-comment"># Signals:   isYearly (boolean, default: false)</span>
+<span class="code-comment"># Computed:  basicPrice, proPrice, enterprisePrice</span>
+<span class="code-comment">#            period, billingLabel, toggleLabel</span>
+<span class="code-comment"># Actions:   toggleBilling()</span>
+<span class="code-comment"># Bindings:  &#123;&#123; billingLabel &#125;&#125;, &#123;&#123; toggleLabel &#125;&#125;</span>
+<span class="code-comment">#            &#123;&#123; basicPrice &#125;&#125;, &#123;&#123; proPrice &#125;&#125;</span>
+<span class="code-comment">#            &#123;&#123; enterprisePrice &#125;&#125;, &#123;&#123; period &#125;&#125;</span>
+<span class="code-comment">#            ax-on:click="toggleBilling"</span></code></pre>
+      </div>
+
+      <!-- FAQ-ACCORDION -->
+      <div class="component-ref">
+        <div class="component-ref-header">
+          <span class="component-ref-name">FAQ Accordion</span>
+          <code class="component-ref-cmd">advanx add faq-accordion</code>
+          <button class="component-ref-copy" ax-on:click="copyFaqAccordion">Copy</button>
+        </div>
+        <pre class="code-pre"><code><span class="code-comment"># Component: faq-accordion</span>
+<span class="code-comment"># Signals:   faqs (array, default: [{q, a}, ...])</span>
+<span class="code-comment"># Computed:  —</span>
+<span class="code-comment"># Actions:   —</span>
+<span class="code-comment"># Bindings:  ax-for="faq in faqs"</span>
+<span class="code-comment">#            &#123;&#123; faq.q &#125;&#125;, &#123;&#123; faq.a &#125;&#125;</span></code></pre>
+      </div>
+
+      <!-- CARD-PRODUCT -->
+      <div class="component-ref">
+        <div class="component-ref-header">
+          <span class="component-ref-name">Card Product</span>
+          <code class="component-ref-cmd">advanx add card-product</code>
+          <button class="component-ref-copy" ax-on:click="copyCardProduct">Copy</button>
+        </div>
+        <pre class="code-pre"><code><span class="code-comment"># Component: card-product</span>
+<span class="code-comment"># Signals:   title   (string,  default: "Aurora...")</span>
+<span class="code-comment">#            price   (string,  default: "$199")</span>
+<span class="code-comment">#            isAdded (boolean, default: false)</span>
+<span class="code-comment"># Computed:  notAdded → !isAdded</span>
+<span class="code-comment"># Actions:   addToCart()</span>
+<span class="code-comment"># Bindings:  &#123;&#123; title &#125;&#125;, &#123;&#123; price &#125;&#125;</span>
+<span class="code-comment">#            ax-if="notAdded", ax-if="isAdded"</span>
+<span class="code-comment">#            ax-on:click="addToCart"</span></code></pre>
+      </div>
+
+      <!-- CONTACT-SECTION -->
+      <div class="component-ref">
+        <div class="component-ref-header">
+          <span class="component-ref-name">Contact Section</span>
+          <code class="component-ref-cmd">advanx add contact-section</code>
+          <button class="component-ref-copy" ax-on:click="copyContactSection">Copy</button>
+        </div>
+        <pre class="code-pre"><code><span class="code-comment"># Component: contact-section</span>
+<span class="code-comment"># Signals:   name    (string,  default: "")</span>
+<span class="code-comment">#            email   (string,  default: "")</span>
+<span class="code-comment">#            message (string,  default: "")</span>
+<span class="code-comment">#            isSent  (boolean, default: false)</span>
+<span class="code-comment"># Computed:  notSent → !isSent</span>
+<span class="code-comment"># Actions:   submit()</span>
+<span class="code-comment"># Bindings:  ax-model="name", ax-model="email"</span>
+<span class="code-comment">#            ax-model="message"</span>
+<span class="code-comment">#            ax-if="notSent", ax-if="isSent"</span>
+<span class="code-comment">#            ax-on:click="submit"</span></code></pre>
+      </div>
+
+      <!-- SIDEBAR-NAV -->
+      <div class="component-ref">
+        <div class="component-ref-header">
+          <span class="component-ref-name">Sidebar Nav</span>
+          <code class="component-ref-cmd">advanx add sidebar-nav</code>
+          <button class="component-ref-copy" ax-on:click="copySidebarNav">Copy</button>
+        </div>
+        <pre class="code-pre"><code><span class="code-comment"># Component: sidebar-nav</span>
+<span class="code-comment"># Signals:   isCollapsed (boolean, default: false)</span>
+<span class="code-comment"># Computed:  isExpanded  → !isCollapsed</span>
+<span class="code-comment">#            toggleIcon  → "«" | "»"</span>
+<span class="code-comment"># Actions:   toggle()</span>
+<span class="code-comment"># Bindings:  ax-if="isExpanded"</span>
+<span class="code-comment">#            &#123;&#123; toggleIcon &#125;&#125;</span>
+<span class="code-comment">#            ax-on:click="toggle"</span></code></pre>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       06 / .ADVANX-META.JSON
+  ══════════════════════════════════════════════ -->
+  <div class="docs-section docs-explain">
+    <span class="explain-badge">AI Feature</span>
+    <div class="docs-section-header" style="border-bottom:none;padding-bottom:0;margin-bottom:0.5rem;">
+      <span class="docs-section-num">06</span>
+      <h3 class="docs-section-title">.advanx-meta.json</h3>
+    </div>
+    <p class="docs-section-desc">Every compiled component automatically emits a <code class="inline-code">.advanx-meta.json</code> file — a structured map of its signals, computed values, actions, and bindings. The build fails if this file cannot be generated. Run <code class="inline-code">advanx explain src/components/counter</code> to print it to your terminal and paste it directly into an AI assistant.</p>
+    <div class="code-block">
+      <div class="code-header"><span class="code-lang">json — .advanx-meta.json (counter example)</span></div>
+      <pre class="code-pre"><code>{
+  <span class="code-key">"component"</span>: <span class="code-str">"counter"</span>,
+  <span class="code-key">"signals"</span>: [<span class="code-str">"count"</span>],
+  <span class="code-key">"computed"</span>: [],
+  <span class="code-key">"actions"</span>: [<span class="code-str">"increment"</span>],
+  <span class="code-key">"structure"</span>: {
+    <span class="code-key">"mustaches"</span>: [<span class="code-str">"count"</span>],
+    <span class="code-key">"conditionals"</span>: [],
+    <span class="code-key">"events"</span>: [{ <span class="code-key">"event"</span>: <span class="code-str">"click"</span>, <span class="code-key">"handler"</span>: <span class="code-str">"increment"</span> }],
+    <span class="code-key">"loops"</span>: [],
+    <span class="code-key">"models"</span>: []
+  },
+  <span class="code-key">"tokens_hint"</span>: <span class="code-str">"This component is AdvanxJS compliant. Logic and View are decoupled."</span>
+}</code></pre>
+    </div>
+  </div>
+
+  <p class="docs-toast" ax-if="isCopied">Copied to clipboard</p>
+</section>

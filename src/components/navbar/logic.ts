@@ -1,8 +1,14 @@
 import { signal, computed } from "../../lib/advanx/runtime.ts";
 
+const _path = window.location.pathname;
+const _initialTab = _path.startsWith("/docs") ? "docs"
+  : _path.startsWith("/constitution") ? "constitution"
+  : _path.startsWith("/components") ? "components"
+  : "home";
+
 export const activeTab = signal<
   "home" | "features" | "docs" | "constitution" | "components"
->("home");
+>(_initialTab as any);
 
 const initial = (document.documentElement.dataset.theme === "dark" ? "dark" : "light") as "light" | "dark";
 export const theme = signal<"light" | "dark">(initial);
@@ -35,11 +41,7 @@ export function goFeatures() {
 
 export function goDocs() {
   activeTab.value = "docs";
-  if (window.location.pathname === "/") {
-    document.querySelector(".docs-start")?.scrollIntoView({ behavior: "smooth" });
-  } else {
-    window.location.href = "/#docs-start";
-  }
+  window.location.href = "/docs/";
 }
 
 export function goConstitution() {
