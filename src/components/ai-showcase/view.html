@@ -1,0 +1,34 @@
+<section class="ai-showcase">
+  <p class="ai-showcase-meta">02 / EXPLAIN</p>
+  <h2 class="ai-showcase-heading">{{ heading }}</h2>
+  <p class="ai-showcase-sub">Stop sending your AI Agent 50 files. AdvanxJS provides a 1KB Meta-Map for 100% accuracy.</p>
+
+  <div class="terminal" role="img" aria-label="Output of the advanx explain command">
+    <div class="terminal-bar">
+      <span class="terminal-dot terminal-dot--red"></span>
+      <span class="terminal-dot terminal-dot--yellow"></span>
+      <span class="terminal-dot terminal-dot--green"></span>
+      <span class="terminal-title">advanx explain</span>
+    </div>
+    <pre class="terminal-body"><code><span class="tok-prompt">$ advanx explain src/components/counter</span>
+AdvanxJS Component: counter
+───────────────────────────
+Path: src/components/counter
+
+<span class="tok-state">STATE (Signals):</span>     count
+DERIVED (Computed):  (none)
+<span class="tok-actions">ACTIONS:</span>             increment
+
+VIEW STRUCTURE:
+  Mustaches:    count
+  Conditionals: (none)
+  Events:       click → increment
+  Loops:        (none)
+  Models:       (none)
+
+<span class="tok-flow">REACTIVITY FLOW:</span>
+  • increment() runs on click → re-renders mustaches [count]
+
+AGENT NOTES: This component is AdvanxJS compliant. Logic and View are decoupled.</code></pre>
+  </div>
+</section>
