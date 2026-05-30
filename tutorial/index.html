@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>AdvanxJS Tutorial — Build a Task List in 5 Minutes</title>
+        <link rel="icon" type="image/png" href="../assets/favicon.png" />
+        <link rel="apple-touch-icon" href="../assets/favicon.png" />
+        <meta name="theme-color" content="#F4F1EB" />
+        <meta name="description" content="The 5-Minute Masterclass: build a reactive task list with AdvanxJS using a signal array and ax-for. Just HTML and TypeScript — no hooks, no boilerplate." />
+        <meta name="keywords" content="advanxjs tutorial, build task list, signals, ax-for, ax-model, advanx create, advanx build, learn advanxjs" />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="author" content="AdvanxJS" />
+
+        <!-- Open Graph -->
+        <meta property="og:title" content="AdvanxJS Tutorial — Build a Task List in 5 Minutes" />
+        <meta property="og:description" content="From npx create to a working ax-for task list. Just HTML and TypeScript — no hooks, no boilerplate." />
+        <meta property="og:image" content="https://www.advanxjs.com/assets/lockup-light.png" />
+        <meta property="og:url" content="https://www.advanxjs.com/tutorial/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="AdvanxJS" />
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="AdvanxJS Tutorial — Build a Task List in 5 Minutes" />
+        <meta name="twitter:description" content="The 5-Minute Masterclass: a reactive task list with signals and ax-for." />
+        <meta name="twitter:image" content="https://www.advanxjs.com/assets/lockup-light.png" />
+
+        <!-- Canonical -->
+        <link rel="canonical" href="https://www.advanxjs.com/tutorial/" />
+        <script>
+            (function () {
+                var saved = null;
+                try { saved = localStorage.getItem("advanx-theme"); } catch (_) {}
+                document.documentElement.dataset.theme = saved === "dark" ? "dark" : "light";
+            })();
+        </script>
+        <style>
+            :root {
+                --ax-bg: #F4F1EB;
+                --ax-bg-alt: #ECE7DD;
+                --ax-border: rgba(14, 14, 16, 0.08);
+                --ax-ink: #0E0E10;
+                --ax-muted: #8a847a;
+                --ax-brand: #FF4D2E;
+                --ax-brand-hover: #E03B1C;
+                --ax-brand-soft: rgba(255, 77, 46, 0.12);
+                --ax-ring: rgba(255, 77, 46, 0.25);
+            }
+            :root[data-theme="dark"] {
+                --ax-bg: #0E0E10;
+                --ax-bg-alt: #1a1a1d;
+                --ax-border: rgba(244, 241, 235, 0.08);
+                --ax-ink: #F4F1EB;
+                --ax-muted: #8a847a;
+            }
+            html {
+                scrollbar-width: thin;
+                scrollbar-color: var(--ax-brand) transparent;
+            }
+            ::-webkit-scrollbar { width: 8px; height: 8px; }
+            ::-webkit-scrollbar-track { background: transparent; }
+            ::-webkit-scrollbar-thumb {
+                background: var(--ax-brand);
+                border-radius: 9999px;
+                border: 2px solid var(--ax-bg);
+            }
+            ::-webkit-scrollbar-thumb:hover { background: var(--ax-brand-hover); }
+            ::-webkit-scrollbar-corner { background: transparent; }
+            html, body { margin: 0; }
+            body {
+                background: var(--ax-bg);
+                color: var(--ax-ink);
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            }
+            .container { width: 100%; }
+            #app > div { display: contents; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div id="app"></div>
+            <script src="../src/components/navbar/dist/bundle.js"></script>
+            <script src="../src/components/tutorial/dist/bundle.js"></script>
+            <script src="../src/components/footer/dist/bundle.js"></script>
+        </div>
+    </body>
+</html>

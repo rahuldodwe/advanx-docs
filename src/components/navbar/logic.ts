@@ -4,10 +4,11 @@ const _path = window.location.pathname;
 const _initialTab = _path.startsWith("/docs") ? "docs"
   : _path.startsWith("/constitution") ? "constitution"
   : _path.startsWith("/components") ? "components"
+  : _path.startsWith("/tutorial") ? "tutorial"
   : "home";
 
 export const activeTab = signal<
-  "home" | "features" | "docs" | "constitution" | "components"
+  "home" | "features" | "docs" | "constitution" | "components" | "tutorial"
 >(_initialTab as any);
 
 const initial = (document.documentElement.dataset.theme === "dark" ? "dark" : "light") as "light" | "dark";
@@ -52,4 +53,9 @@ export function goConstitution() {
 export function goComponents() {
   activeTab.value = "components";
   window.location.href = "/components/";
+}
+
+export function goTutorial() {
+  activeTab.value = "tutorial";
+  window.location.href = "/tutorial/";
 }
