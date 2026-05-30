@@ -1,0 +1,47 @@
+<section class="seo-docs">
+  <p class="seo-docs-meta">07 / EXPORT</p>
+  <h2 class="seo-docs-heading">{{ heading }}</h2>
+  <p class="seo-docs-sub">
+    Ship a fully static site without a Node server. <code class="seo-inline">advanx export</code>
+    pre-renders every page at build-time so crawlers get finished HTML — not an empty shell.
+  </p>
+
+  <ul class="seo-points">
+    <li class="seo-point">
+      <span class="seo-point-num">1</span>
+      It runs your app at build-time in a <strong>Headless DOM</strong> to pre-render your components.
+    </li>
+    <li class="seo-point">
+      <span class="seo-point-num">2</span>
+      It outputs <strong>pure, finished HTML</strong>.
+    </li>
+    <li class="seo-point">
+      <span class="seo-point-num">3</span>
+      Google and AI crawlers see your content <strong>instantly</strong>.
+    </li>
+  </ul>
+
+  <p class="seo-callout">
+    AdvanxJS uses a Headless DOM during the build step to pre-render your components. This ensures
+    that while we ship Zero Virtual DOM to your users' browsers, Google and AI crawlers still
+    receive a fully-rendered, finished document for 100/100 SEO.
+  </p>
+
+  <div class="terminal" role="img" aria-label="Output of the advanx export command">
+    <div class="terminal-bar">
+      <span class="terminal-dot terminal-dot--red"></span>
+      <span class="terminal-dot terminal-dot--yellow"></span>
+      <span class="terminal-dot terminal-dot--green"></span>
+      <span class="terminal-title">advanx export</span>
+      <button class="terminal-copy" ax-on:click="copyExport">Copy</button>
+    </div>
+    <pre class="terminal-body"><code><span class="tok-prompt">$ advanx export src/pages --out dist</span>
+
+<span class="tok-ok">✓</span> Booted Headless DOM
+<span class="tok-ok">✓</span> Pre-rendered 1 page → dist/
+<span class="tok-ok">✓</span> Emitted pure, finished HTML (Zero Virtual DOM shipped)</code></pre>
+  </div>
+  <p class="seo-copied" ax-if="isCopied">Copied to clipboard!</p>
+
+  <p class="seo-hook">100/100 Lighthouse score by default. Zero complex server setup required.</p>
+</section>
